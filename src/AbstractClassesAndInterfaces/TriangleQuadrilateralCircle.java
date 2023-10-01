@@ -1,4 +1,4 @@
-package AbstractClassesAndInterfaces;
+package AbstractClassesAndInterfaces; //Абстрактные классы и интерфейсы
 /*
 Реализуйте классы Triangle, Quadrilateral, Circle так, чтобы они расширяли абстрактный класс Figure.
 
