@@ -2,8 +2,6 @@ package WorkingWithStrings;
 
 import java.util.Arrays;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /*
 Напишите программу, которая получает на вход текстовую строку и разделяет её на массив слов, используя следующие разделительные символы: ",", ".", ";", ":", " ", "?", "!"
@@ -27,10 +25,7 @@ public class ArrayWords {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String string = scanner.nextLine();
-        Pattern pattern = Pattern.compile("[,.;: ?!]+");
-        Matcher matcher = pattern.matcher(string);
-        string = matcher.replaceAll(" ");
-        String[] word = string.split(" ");
-        System.out.println(Arrays.toString(word));
+        String [] strings = string.split("[,.;: ?!]+");
+        System.out.println(Arrays.toString(strings));
     }
 }
