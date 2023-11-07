@@ -125,7 +125,7 @@ public class House {
         House1<Cat> catHouse = new House1();
         catHouse.enter(barbos);
         catHouse.enter(murzik);
-        System.out.println(dogHouse.toString()+catHouse.toString());
+        System.out.println(dogHouse +catHouse.toString());
     }
 }
 
