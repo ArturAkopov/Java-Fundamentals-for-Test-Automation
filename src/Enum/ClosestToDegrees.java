@@ -57,36 +57,16 @@ enum Direction {
     }
 
     public static Direction closestToDegrees(int degrees) {
-        int b = 0; // целое число, для дальнейшего вычисления, введено для ограничения в дальнейшем по границе 360градусов
-        if ((Math.abs(degrees) % 360) >= 0) b=Math.abs(degrees)/360; // если остаток от деления >=0, то вычисляем количество полностью пройденных кругов
-        int c = b*360; // вычисление кол-ва градусов прошедших b полных кругов(360град)
-        int a = Math.abs(degrees) - c; // вычисляем значение оставшихся градусов = вводимое значение - 360град * кол-во целых кругов
-        int[] degree = new int[Direction.values().length]; // создаем массив для записи в него значений из перечисления, длина устанавливается по длине массива перечисления
-        int x= 0;
-
-        for(Direction value: Direction.values()){ //Цикл записывает в массив degree значения разницы между a и значением degrees для каждой из переменных массива value
+        int a = degrees%360; // вычисление остатка от деления. Пример degrees = 400, a = 40
+        if (a<0) a = 360+a; // если a < 0, то идем по окружности в обратную сторону
+        int min = a;
+        for(Direction value: Direction.values()){ //Цикл поиска минимального значения разницы между degrees и a
             if (a>315&a<360){N.degrees=360;} // приравнивание 0 и 360 градусов
-            degree[x] = Math.abs(a - value.getDegrees());
-            x++;
+            if (Math.abs(a - value.getDegrees()) <= min) min = Math.abs(a - value.getDegrees()); //запись минимального значения min
         }
 
-        int min = degree[0]; //ввод переменной для минимального значения массива
-
-        for (int i = 0; i<degree.length;i++) // цикл для вычисления минимального значения массива
-        {
-            if (min>degree[i]) min=degree[i];
-        }
-        int ordinal = 0; // ввод переменной для вычисления индекса минимального значения массива
-
-        for (int i = 0; i < degree.length; i++) // вычисление индекса минимального значения массива
-        {
-            if (degree[i] == min) {
-               ordinal=i;
-            }
-        }
-
-        for(Direction value: Direction.values()){ // цикл для сравнения индексов каждого элемента массива перечисления с переменной индекса минимального значения
-            if (value.ordinal()==ordinal) return value; // возвращение искомого объекта массива перечисления
+        for(Direction value: Direction.values()){ // цикл для поиска value с минимальным значением разницы
+            if (Math.abs(a-value.getDegrees()) == min) return value; // возвращение искомого объекта массива перечисления
         }
 
         return null;
